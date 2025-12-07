@@ -10,8 +10,8 @@ fn main() {
     let arg = env::args().nth(1).unwrap_or_else(|| usage_and_exit());
 
     match arg.as_str() {
-        "a" => println!("{}", solve_a(day01::examples::EXAMPLE_A)),
-        "b" => println!("{}", solve_b(day01::examples::EXAMPLE_B)),
+        "a" => println!("{}", solve_a(day01::examples::EXAMPLE)),
+        "b" => println!("{}", solve_b(day01::examples::EXAMPLE)),
         _ => usage_and_exit(),
     }
 }

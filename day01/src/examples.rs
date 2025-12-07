@@ -1,4 +1,4 @@
-pub const EXAMPLE_A: &str = "\
+pub const EXAMPLE: &str = "\
 L68
 L30
 R48
@@ -9,9 +9,4 @@ L1
 L99
 R14
 L82
-";
-
-pub const EXAMPLE_B: &str = "\
-N
-N
 ";
