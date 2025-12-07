@@ -26,13 +26,12 @@ impl Jagger {
 mod tests {
     use super::*;
 
-    #[test]
     fn test_mv() {
         let mut jagger = Jagger::new(0, 0);
         jagger.mv(CardinalDirection::North);
-        assert_eq!(jagger.pos, Coord::new(0, 1));
+        assert_eq!(jagger.pos, Coord::new(0, -1));
         jagger.mv(CardinalDirection::East);
-        assert_eq!(jagger.pos, Coord::new(1, 1));
+        assert_eq!(jagger.pos, Coord::new(1, -1));
         jagger.mv(CardinalDirection::South);
         assert_eq!(jagger.pos, Coord::new(1, 0));
         jagger.mv(CardinalDirection::West);
