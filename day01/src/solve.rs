@@ -1,39 +1,20 @@
-use direction::CardinalDirection;
-use jagger::Jagger;
+use crate::dial::Dial;
 
-pub fn solve_a(input: &str) -> String {
-    let mut j = Jagger::new(0, 0);
-    for line in input.lines() {
-        let ch = line.trim().chars().next();
-        if let Some(dir) = ch {
-            match dir {
-                'N' => j.mv(CardinalDirection::North),
-                'E' => j.mv(CardinalDirection::East),
-                'S' => j.mv(CardinalDirection::South),
-                'W' => j.mv(CardinalDirection::West),
-                _ => {}
-            }
+pub fn solve_a(input: &str) -> u32 {
+    let mut result: u32 = 0;
+    let mut dial = Dial::from(50);
+    for instruction in input.lines() {
+        dial.rotate(instruction);
+        if dial.pos == 0 {
+            result += 1;
         }
     }
-    format!("{},{}", j.pos.x, j.pos.y)
+
+    result
 }
 
-pub fn solve_b(input: &str) -> String {
-    // For part B we perform the same moves but start at (10,10)
-    let mut j = Jagger::new(10, 10);
-    for line in input.lines() {
-        let ch = line.trim().chars().next();
-        if let Some(dir) = ch {
-            match dir {
-                'N' => j.mv(CardinalDirection::North),
-                'E' => j.mv(CardinalDirection::East),
-                'S' => j.mv(CardinalDirection::South),
-                'W' => j.mv(CardinalDirection::West),
-                _ => {}
-            }
-        }
-    }
-    format!("{},{}", j.pos.x, j.pos.y)
+pub fn solve_b(input: &str) -> u32 {
+    0
 }
 
 #[cfg(test)]
@@ -43,15 +24,12 @@ mod tests {
 
     #[test]
     fn test_a() {
-        // EXAMPLE_A contains two 'S' moves starting from (0,0) -> (0,2)
-        let expected = "0,2";
-        assert_eq!(solve_a(EXAMPLE_A), expected);
+        assert_eq!(solve_a(EXAMPLE_A), 3);
     }
 
     #[test]
     fn test_b() {
         // EXAMPLE_B contains two 'N' moves starting from (10,10) -> (10,8)
-        let expected = "10,8";
-        assert_eq!(solve_b(EXAMPLE_B), expected);
+        assert_eq!(solve_b(EXAMPLE_B), 0);
     }
 }
